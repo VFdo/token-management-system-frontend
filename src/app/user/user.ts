@@ -5,6 +5,7 @@ export class User {
     username!: string;
     email!: string;
     roles!: string[];
+    role = this.roles[0];
 }
 
 

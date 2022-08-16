@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { User } from '../user/user';
@@ -13,6 +13,8 @@ export class LoginComponent implements OnInit {
   form!: FormGroup;
   mystring!: string;
   myUser!: User;
+  // @Output() sendUser = new EventEmitter<User>();
+
   constructor(
     private formBuilder: FormBuilder,
     private http: HttpClient,
@@ -25,15 +27,19 @@ export class LoginComponent implements OnInit {
     })
   }
 
+
+
   submit(): void{
-    console.log(this.form.getRawValue())
+    // console.log(this.form.getRawValue())
     this.http.post('http://localhost:8080/signin', this.form.getRawValue(), {withCredentials: true})
     .subscribe((res : any) => {
       this.myUser=res;
       sessionStorage.setItem('username', this.myUser.username)
       let tokenStr = 'Bearer ' + this.myUser.token
       sessionStorage.setItem('token', tokenStr)
-      console.log(this.myUser.type)
+      sessionStorage.setItem('role', this.myUser.roles[0])
+      console.log('done')
+      this.router.navigate([''])
     });
   }
 }
