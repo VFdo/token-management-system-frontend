@@ -9,6 +9,10 @@ import { Router } from '@angular/router';
 })
 export class HomeComponent implements OnInit {
   message = 'you are not logged in';
+  role = sessionStorage.getItem("role")
+  hideManagerView = true;
+  hidePatientView = true;
+  hideLoginButton = true;
 
   constructor(
     private http: HttpClient,
@@ -16,14 +20,20 @@ export class HomeComponent implements OnInit {
 ) { }
 
   ngOnInit(): void {
-    var role = sessionStorage.getItem("role")
-    if( role == 'ROLE_MANAGER'){
-      // this.router.navigate(['/http://localhost:8080/manager/home'])
+    // move to login page with routes
+    if( this.role == 'ROLE_MANAGER'){
       this.message= 'welcome to the MANAGER page ' + sessionStorage.getItem('username')
+      this.hideManagerView = false;
+
+      // this.http.get('/http://localhost:8080/manager/home').subscribe((res:any) => console.log(res))
+    }
+    else if(this.role == 'ROLE_PATIENT'){
+      this.message= 'welcome to the PATIENT page ' + sessionStorage.getItem('username')
+      this.hidePatientView = false;
+      // this.http.get('/http://localhost:8080/manager/home').subscribe((res:any) => console.log(res))
     }
     else{
-      // this.router.navigate(['/http://localhost:8080/patient/home'])
-      this.message= 'welcome to the PATIENT page ' + sessionStorage.getItem('username')
+      this.hideLoginButton = false;
     }
   }
 

@@ -10,6 +10,10 @@ import { NavigationComponent } from './navigation/navigation.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { Auth } from './auth/auth';
+import { ManagerComponent } from './manager/manager.component';
+import { PatientComponent } from './patient/patient.component';
+import { TokenComponent } from './token/token.component';
+import { PatientViewComponent } from './patient-view/patient-view.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +21,11 @@ import { Auth } from './auth/auth';
     RegisterComponent,
     LoginComponent,
     HomeComponent,
-    NavigationComponent
+    NavigationComponent,
+    ManagerComponent,
+    PatientComponent,
+    TokenComponent,
+    PatientViewComponent
   ],
   imports: [
     BrowserModule,
