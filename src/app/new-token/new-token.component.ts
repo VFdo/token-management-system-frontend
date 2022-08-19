@@ -29,5 +29,6 @@ export class NewTokenComponent implements OnInit {
     // console.log(this.form.getRawValue())
     this.http.post('http://localhost:8080/tokens/new', this.form.getRawValue())
     .subscribe((res : any) => console.log(res))
+    this.router.navigate([''])
   }
 }

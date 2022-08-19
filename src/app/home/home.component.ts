@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
+  loggedIn = false;
   message = 'you are not logged in';
   role = sessionStorage.getItem("role")
   hideManagerView = true;
@@ -22,19 +23,24 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     // move to login page with routes
     if( this.role == 'ROLE_MANAGER'){
-      this.message= 'welcome to the MANAGER page ' + sessionStorage.getItem('username')
+      this.message= 'Welcome Manager, ' + sessionStorage.getItem('username')
       this.hideManagerView = false;
-
+      this.loggedIn=true;
       // this.http.get('/http://localhost:8080/manager/home').subscribe((res:any) => console.log(res))
     }
     else if(this.role == 'ROLE_PATIENT'){
-      this.message= 'welcome to the PATIENT page ' + sessionStorage.getItem('username')
+      this.message= 'Welcome Patient, ' + sessionStorage.getItem('username')
       this.hidePatientView = false;
+      this.loggedIn=true;
       // this.http.get('/http://localhost:8080/manager/home').subscribe((res:any) => console.log(res))
     }
     else{
       this.hideLoginButton = false;
     }
+  }
+
+  login() : void{
+    this.router.navigate(['/login'])
   }
 
 }

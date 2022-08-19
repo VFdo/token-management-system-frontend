@@ -2,9 +2,11 @@ import { formatDate, DatePipe } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ChildActivationEnd } from '@angular/router';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Patient } from '../patientClass/patient';
 import { TokenComponent } from '../token/token.component';
 import { Token } from '../tokenClass/token';
+import { UpdateUserComponent } from '../update-user/update-user.component';
 
 @Component({
   selector: 'app-manager',
@@ -25,7 +27,10 @@ export class ManagerComponent implements OnInit {
   
   // today = formatDate(new Date(), 'yyyy/MM/dd', 'en');
 
-  constructor(private http: HttpClient) { }
+  constructor(
+    private http: HttpClient,
+    private modalService: NgbModal
+    ) { }
 
   ngOnInit(): void {
     
@@ -51,8 +56,11 @@ export class ManagerComponent implements OnInit {
   }
 
   showEditView(){
+    this.showPatientView = false;
     this.showTokenView = false;
-    this.showUpdateView = true;
+    this.showUpdateView = false;
+    sessionStorage.setItem('findUser', sessionStorage.getItem('userId')!)
+    const modalRef = this.modalService.open(UpdateUserComponent);
   }
 
   

@@ -40,8 +40,10 @@ export class LoginComponent implements OnInit {
       sessionStorage.setItem('token', tokenStr)
       sessionStorage.setItem('role', this.myUser.roles[0])
       sessionStorage.setItem('findUser', this.myUser.id)
+      sessionStorage.setItem('loggedIn', 'true')
       console.log('done')
-      this.router.navigate([''])
-    });
+      window.location.href='http://localhost:4200/'
+      // this.router.navigate([''])
+    }, err=> console.log(err));
   }
 }

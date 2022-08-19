@@ -2,6 +2,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Patient } from '../patientClass/patient';
 import { TokenComponent } from '../token/token.component';
 import { Token } from '../tokenClass/token';
@@ -22,7 +23,8 @@ export class PatientComponent implements OnInit {
   constructor(
     private http: HttpClient,
     public router: Router,
-    public formBuilder: FormBuilder
+    public formBuilder: FormBuilder,
+    private modalService: NgbModal
   ) { }
 
   ngOnInit(): void {
@@ -41,7 +43,8 @@ export class PatientComponent implements OnInit {
 
   showUpdateView(){
     this.showTokenView = false;
-    this.showEditView = true;
+    this.showEditView = false;
+    const modalRef = this.modalService.open(UpdateUserComponent);
   }
 
 

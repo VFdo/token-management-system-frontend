@@ -17,6 +17,7 @@ export class TokenComponent implements OnInit {
   changedDate = '';
   pipe = new DatePipe('en-US');
   form!: FormGroup;
+  @Input() modalView!: boolean;
 
   constructor(
     private http:HttpClient,

@@ -1,15 +1,30 @@
-<form [formGroup]="form" (submit)="submit()">
-    <h1 class="h3 mb-3 fw-normal">Enter New Details</h1>
-
+<div class="container d-flex justify-content-center m-3">
+  <form [formGroup]="form" (submit)="submit()">
+    <h1 class="h3 mb-3 fw-normal text-center">Update Details</h1>
+    <div class="form-group m-3">
+      <label class="m-1">Username:</label>
       <input formControlName="username" type="name" class="form-control" placeholder="Username" required autofocus>
+    </div>
+      <div class="form-group m-3">
+        <label class="m-1">Fullname:</label>
       <input formControlName="fullName" type="name" class="form-control" placeholder="Fullname" required>
+      </div>
+      <div class="form-group m-3">
+      <label class="m-1">Email:</label>
       <input formControlName="email" type="email" class="form-control" placeholder="Email" required>
+      </div>
+      <div class="form-group m-3">
+      <label class="m-1">Phone no.:</label>
       <input formControlName="phoneNo" type="phone" class="form-control" placeholder="Phone No" required>
-      <input formControlName="dateOfBirth" type="date" class="form-control" placeholder="YYYY-MM-dd" required>
+      </div>
+      <div class="form-group m-3">
+        <label class="m-1">Date of birth:</label>
+      <input formControlName="dateOfBirth" type="date" class="form-control" placeholder="Date" required>
+      </div>
 
     <button class="w-100 btn btn-lg btn-primary" type="submit">Submit</button>
-    <p class="mt-5 mb-3 text-muted">&copy; 2017–2022</p>
   </form>
+</div>
 
   <!-- {
     "id": "62f7e32cb844ed200ba0977b",

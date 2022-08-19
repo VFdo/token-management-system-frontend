@@ -16,6 +16,9 @@ import { TokenComponent } from './token/token.component';
 import { PatientViewComponent } from './patient-view/patient-view.component';
 import { NewTokenComponent } from './new-token/new-token.component';
 import { UpdateUserComponent } from './update-user/update-user.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { Placement as PopperPlacement, Options } from '@popperjs/core';
+
 
 @NgModule({
   declarations: [
@@ -29,14 +32,15 @@ import { UpdateUserComponent } from './update-user/update-user.component';
     TokenComponent,
     PatientViewComponent,
     NewTokenComponent,
-    UpdateUserComponent
+    UpdateUserComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    NgbModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: Auth, multi: true }
