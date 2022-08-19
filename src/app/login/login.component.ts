@@ -35,9 +35,11 @@ export class LoginComponent implements OnInit {
     .subscribe((res : any) => {
       this.myUser=res;
       sessionStorage.setItem('username', this.myUser.username)
+      sessionStorage.setItem('userId', this.myUser.id)
       let tokenStr = 'Bearer ' + this.myUser.token
       sessionStorage.setItem('token', tokenStr)
       sessionStorage.setItem('role', this.myUser.roles[0])
+      sessionStorage.setItem('findUser', this.myUser.id)
       console.log('done')
       this.router.navigate([''])
     });

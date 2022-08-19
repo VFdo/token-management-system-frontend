@@ -1,4 +1,5 @@
 <div class="row g-4 d-flex p-4 text-center justify-content-center">
+  <button (click)="router.navigate(['/register'])">Add new user</button>
     <table class="table align-middle mb-0 bg-white">
         <thead class="bg-light">
           <tr>
@@ -7,18 +8,21 @@
             <th>Phone</th>
             <th>Tokens</th>
             <th>Actions</th>
+            <th>Delete</th>
           </tr>
         </thead>
         <tbody>
             <tr *ngFor="let patient of patients">
               <td>{{ patient.fullName }}</td>
               <td>{{ patient.email }}</td>
-              <td>{{ patient.phoneNo }}</td>
-              <!-- TODO: make button -->
-              <td><button type="button" mdbripple="" ripplecolor="dark" class="btn btn-link btn-rounded btn-sm fw-bold"> View token </button></td>
-              <!-- TODO: make button -->
-              <td><button type="button" mdbripple="" ripplecolor="dark" class="btn btn-link btn-rounded btn-sm fw-bold"> Edit </button></td>
+              <td>{{ patient.phoneNo }}</td> 
+              <td><button (click)="(getTokensView(patient.id))" type="button" mdbripple="" ripplecolor="dark" class="btn btn-link btn-rounded btn-sm fw-bold"> View Tokens </button></td>
+              <td><button (click)="(getEditView(patient.id))" type="button" mdbripple="" ripplecolor="dark" class="btn btn-link btn-rounded btn-sm fw-bold"> Edit </button></td>
+              <td><button (click)="(deletePatient(patient.id))" type="button" mdbripple="" ripplecolor="dark" class="btn btn-link btn-rounded btn-sm fw-bold"> Delete </button></td>
             </tr>
           </tbody>
     </table>
 </div>
+
+<app-update-user *ngIf="showEditView">s</app-update-user>
+<app-token *ngIf="showTokenView" [tokens]="tokens"></app-token>

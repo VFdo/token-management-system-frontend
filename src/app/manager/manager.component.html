@@ -23,12 +23,12 @@
             <div class="card-body">
             <h5 class="card-title">Special title treatment</h5>
             <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-            <a class="btn btn-primary">Edit Profile</a>
+            <a (click)="showEditView()" class="btn btn-primary">Edit Profile</a>
             </div>
         </div>
     </div>
 </div>
 
 <app-patient-view *ngIf="showPatientView" [patients]="patients"></app-patient-view>
-
 <app-token *ngIf="showTokenView" [tokens]="tokens"></app-token>
+<app-update-user *ngIf="showUpdateView"></app-update-user>

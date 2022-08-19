@@ -1,0 +1,21 @@
+<form [formGroup]="form" (submit)="submit()">
+    <h1 class="h3 mb-3 fw-normal">Enter New Details</h1>
+
+      <input formControlName="username" type="name" class="form-control" placeholder="Username" required autofocus>
+      <input formControlName="fullName" type="name" class="form-control" placeholder="Fullname" required>
+      <input formControlName="email" type="email" class="form-control" placeholder="Email" required>
+      <input formControlName="phoneNo" type="phone" class="form-control" placeholder="Phone No" required>
+      <input formControlName="dateOfBirth" type="date" class="form-control" placeholder="YYYY-MM-dd" required>
+
+    <button class="w-100 btn btn-lg btn-primary" type="submit">Submit</button>
+    <p class="mt-5 mb-3 text-muted">&copy; 2017–2022</p>
+  </form>
+
+  <!-- {
+    "id": "62f7e32cb844ed200ba0977b",
+    "username":"maryx",
+    "fullname":"mary jane",
+    "email":"maryx@email.com",
+    "phoneNo":"01234567889",
+    "dateOfBirth": "1995-08-10"
+} -->

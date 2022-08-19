@@ -14,6 +14,8 @@ import { ManagerComponent } from './manager/manager.component';
 import { PatientComponent } from './patient/patient.component';
 import { TokenComponent } from './token/token.component';
 import { PatientViewComponent } from './patient-view/patient-view.component';
+import { NewTokenComponent } from './new-token/new-token.component';
+import { UpdateUserComponent } from './update-user/update-user.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +27,9 @@ import { PatientViewComponent } from './patient-view/patient-view.component';
     ManagerComponent,
     PatientComponent,
     TokenComponent,
-    PatientViewComponent
+    PatientViewComponent,
+    NewTokenComponent,
+    UpdateUserComponent
   ],
   imports: [
     BrowserModule,

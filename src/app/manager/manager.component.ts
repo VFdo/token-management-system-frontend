@@ -1,7 +1,9 @@
 import { formatDate, DatePipe } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { ChildActivationEnd } from '@angular/router';
 import { Patient } from '../patientClass/patient';
+import { TokenComponent } from '../token/token.component';
 import { Token } from '../tokenClass/token';
 
 @Component({
@@ -12,8 +14,10 @@ import { Token } from '../tokenClass/token';
 export class ManagerComponent implements OnInit {
   showPatientView = false;
   showTokenView = false;
+  showUpdateView = false;
   patients!: Patient[];
   tokens!: Token[];
+  // @ViewChild(TokenComponent) tokens!: TokenComponent
 
   today = new Date();
   changedDate = '';
@@ -29,17 +33,26 @@ export class ManagerComponent implements OnInit {
 
   getUsers() : void{
     this.showTokenView = false;
+    this.showUpdateView = false;
     this.showPatientView = true;
     let url = 'http://localhost:8080/users/all'
     this.http.get(url).subscribe((res : any) => this.patients=res)
   }
 
   getTokens() : void{
+    // console.log('getting child...')
+    // this.tokens.getTokensManager()
     this.showPatientView = false;
+    this.showUpdateView = false;
     this.showTokenView = true;
     let url = 'http://localhost:8080/tokens/all'
     this.http.get(url).subscribe((res : any) => this.tokens=res
     )
+  }
+
+  showEditView(){
+    this.showTokenView = false;
+    this.showUpdateView = true;
   }
 
   
