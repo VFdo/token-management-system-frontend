@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -30,7 +30,6 @@ export class LoginComponent implements OnInit {
 
 
   submit(): void{
-    // console.log(this.form.getRawValue())
     this.http.post('http://localhost:8080/signin', this.form.getRawValue(), {withCredentials: true})
     .subscribe((res : any) => {
       this.myUser=res;
@@ -43,7 +42,6 @@ export class LoginComponent implements OnInit {
       sessionStorage.setItem('loggedIn', 'true')
       console.log('done')
       window.location.href='http://localhost:4200/'
-      // this.router.navigate([''])
-    }, err=> console.log(err));
+    },(err: HttpErrorResponse)=> alert('Invalid credentials, please try again!'));
   }
 }

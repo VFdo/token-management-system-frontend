@@ -1,5 +1,5 @@
 import { formatDate, DatePipe } from '@angular/common';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ChildActivationEnd } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -19,6 +19,7 @@ export class ManagerComponent implements OnInit {
   showUpdateView = false;
   patients!: Patient[];
   tokens!: Token[];
+  ownUser = true;
   // @ViewChild(TokenComponent) tokens!: TokenComponent
 
   today = new Date();
@@ -41,7 +42,9 @@ export class ManagerComponent implements OnInit {
     this.showUpdateView = false;
     this.showPatientView = true;
     let url = 'http://localhost:8080/users/all'
-    this.http.get(url).subscribe((res : any) => this.patients=res)
+    this.http.get(url).subscribe(
+      (res : any) => this.patients=res),
+      (err: HttpErrorResponse)=> alert(err.message);
   }
 
   getTokens() : void{
@@ -51,8 +54,9 @@ export class ManagerComponent implements OnInit {
     this.showUpdateView = false;
     this.showTokenView = true;
     let url = 'http://localhost:8080/tokens/all'
-    this.http.get(url).subscribe((res : any) => this.tokens=res
-    )
+    this.http.get(url).subscribe(
+      (res : any) => this.tokens=res),
+      (err: HttpErrorResponse)=> alert(err.message);
   }
 
   showEditView(){
@@ -61,6 +65,7 @@ export class ManagerComponent implements OnInit {
     this.showUpdateView = false;
     sessionStorage.setItem('findUser', sessionStorage.getItem('userId')!)
     const modalRef = this.modalService.open(UpdateUserComponent);
+    modalRef.componentInstance.ownUser = true
   }
 
   

@@ -1,13 +1,16 @@
 <div class="container d-flex justify-content-center m-3">
   <form [formGroup]="form" (submit)="submit()">
     <h1 class="h3 mb-3 fw-normal text-center">Update Details</h1>
-    <div class="form-group m-3">
-      <label class="m-1">Username:</label>
-      <input formControlName="username" type="name" class="form-control" placeholder="Username" required autofocus>
+    <div *ngIf="ownUser">
+      <p class="fw-light">*you will be logged out after updating the account</p>
     </div>
       <div class="form-group m-3">
-        <label class="m-1">Fullname:</label>
-      <input formControlName="fullName" type="name" class="form-control" placeholder="Fullname" required>
+        <label class="m-1">Full name:</label>
+      <input formControlName="fullName" type="name" class="form-control" placeholder="Fullname" required autofocus>
+      </div>
+      <div class="form-group m-3">
+        <label class="m-1">Password:</label>
+      <input formControlName="password" type="password" class="form-control" placeholder="Password" required>
       </div>
       <div class="form-group m-3">
       <label class="m-1">Email:</label>
@@ -25,12 +28,3 @@
     <button class="w-100 btn btn-lg btn-primary" type="submit">Submit</button>
   </form>
 </div>
-
-  <!-- {
-    "id": "62f7e32cb844ed200ba0977b",
-    "username":"maryx",
-    "fullname":"mary jane",
-    "email":"maryx@email.com",
-    "phoneNo":"01234567889",
-    "dateOfBirth": "1995-08-10"
-} -->

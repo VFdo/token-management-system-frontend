@@ -1,4 +1,4 @@
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -19,6 +19,7 @@ export class PatientComponent implements OnInit {
   showEditView = false;
   @ViewChild(UpdateUserComponent) updateUser!: UpdateUserComponent
   form!: FormGroup
+  ownUser = true;
 
   constructor(
     private http: HttpClient,
@@ -37,7 +38,8 @@ export class PatientComponent implements OnInit {
     this.showTokenView = true;
     this.showEditView = false;
     let url = 'http://localhost:8080/patient/tokens/all'
-    this.http.post(url, this.form.getRawValue()).subscribe((res : any)=>this.tokens = res)
+    this.http.post(url, this.form.getRawValue()).subscribe((res : any)=>this.tokens = res),
+    (err: HttpErrorResponse)=> alert(err.message);
     console.log(sessionStorage.getItem('userId'))
   }
 
@@ -45,6 +47,7 @@ export class PatientComponent implements OnInit {
     this.showTokenView = false;
     this.showEditView = false;
     const modalRef = this.modalService.open(UpdateUserComponent);
+    modalRef.componentInstance.ownUser = true;
   }
 
 

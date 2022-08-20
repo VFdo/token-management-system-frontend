@@ -3,7 +3,7 @@
         <div class="card">
             <div class="card-body">
             <!-- <div class="icon-square"> -->
-            <h5 class="card-title">Create a new token</h5>
+            <h1 class="card-title">🏥</h1>
             <p class="card-text">Make a new appointment</p>
             <a (click)="router.navigate(['/newtoken'])" class="btn btn-primary">Create New Token</a>
             </div>
@@ -12,8 +12,8 @@
     <div class="col-sm-3">
         <div class="card">
             <div class="card-body">
-            <h5 class="card-title">My Token History</h5>
-            <p class="card-text">See all created tokens</p>
+            <h1 class="card-title">⏳</h1>
+            <p class="card-text">See all previously created tokens</p>
             <a (click)="getAllTokens()" class="btn btn-primary">View Tokens</a>
             </div>
         </div>
@@ -21,7 +21,7 @@
     <div class="col-sm-3">
         <div class="card">
             <div class="card-body">
-            <h5 class="card-title">Update my profile</h5>
+            <h1 class="card-title">🧑‍💻</h1>
             <p class="card-text">Update or edit profile</p>
             <a (click)="showUpdateView()" class="btn btn-primary">Edit Profile</a>
             </div>
@@ -30,4 +30,4 @@
 </div>
 
 <app-token *ngIf="showTokenView" [tokens]="tokens"></app-token>
-<app-update-user *ngIf="showEditView"></app-update-user>
+<app-update-user *ngIf="showEditView" [ownUser]="ownUser"></app-update-user>

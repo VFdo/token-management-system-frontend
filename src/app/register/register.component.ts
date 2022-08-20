@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
 
 @Component({
@@ -26,6 +26,7 @@ export class RegisterComponent implements OnInit {
   submit(): void{
     console.log(this.form.getRawValue())
     this.http.post('http://localhost:8080/users/new', this.form.getRawValue())
-    .subscribe(() => this.router.navigate(['/login']))
+    .subscribe(() => this.router.navigate(['']),
+    (err: HttpErrorResponse)=> alert(err.message))
   }
 }

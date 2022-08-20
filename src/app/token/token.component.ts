@@ -1,5 +1,5 @@
 import { DatePipe } from '@angular/common';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http';
 import { Component, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -40,7 +40,8 @@ export class TokenComponent implements OnInit {
   deactivateTokens() : void {
     let formData =new FormData();
     formData.append('date', this.changedDate)
-    this.http.post('http://localhost:8080/tokens/deactivate', formData).subscribe((res : any)=>{console.log(res)})
+    this.http.post('http://localhost:8080/tokens/deactivate', formData).subscribe((res : any)=>{console.log(res)},
+    (err: HttpErrorResponse)=> alert(err.message))
     this.router.navigate(['manager']);
   }
 

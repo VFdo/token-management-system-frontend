@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Component, Input, OnInit, ViewChild, ViewChildren } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -23,6 +23,7 @@ export class PatientViewComponent implements OnInit {
   showTokenView = false;
   form!: FormGroup
   modalView = false;
+  ownUser = true;
 
   constructor(
     public router: Router,
@@ -36,8 +37,10 @@ export class PatientViewComponent implements OnInit {
   }
 
   getEditView(id: any){
+    this.ownUser = false;
     sessionStorage.setItem('findUser', id)
     const modalRef = this.modalService.open(UpdateUserComponent);
+    modalRef.componentInstance.ownUser = false;
     this.showTokenView = false;
   }
 
@@ -53,10 +56,9 @@ export class PatientViewComponent implements OnInit {
       this.tokens = res;
       const modalRef = this.modalService.open(TokenComponent, { size: 'xl' });
       modalRef.componentInstance.tokens = this.tokens;
-      console.log(res);
-    })
-    // console.log(this.form.getRawValue())
-    // console.log(this.tokens[0])
+      console.log(res)
+    },
+    (err: HttpErrorResponse)=> alert(err.message))
   }
     
 
@@ -67,7 +69,8 @@ export class PatientViewComponent implements OnInit {
     });
     let url = 'http://localhost:8080/user/delete'
     this.http.post(url, this.form.getRawValue())
-    .subscribe((res : any)=> console.log(JSON.parse(res)))
+    .subscribe((res : any)=> console.log(JSON.parse(res)),
+    (err: HttpErrorResponse)=> alert(err.message))
     console.log(this.form.getRawValue())
     window.location.reload();
   }

@@ -17,9 +17,8 @@
               <td>{{ token.tokenNumber }}</td>
               <td>{{ token.date }}</td>
               <td>{{ token.patient }}</td>
-              <td>{{ token.state }}</td>
-              <!--  TODO: make edit? -->
-              <!-- <td *ngIf="userManager"><button (click)="(deleteToken(token.id))" type="button" mdbripple="" ripplecolor="dark" class="btn btn-link btn-rounded btn-sm fw-bold"> Edit </button></td> -->
+              <td class=" p-1 m-2 badge rounded-pill bg"[ngClass]="{'bg-success' : (token.state)=='ACTIVE', 'bg-danger' : (token.state)=='DEACTIVATED'}">{{ token.state }}</td>
+              <!-- <td>{{ token.state }}</td>   -->
             </tr>
           </tbody>
     </table>
