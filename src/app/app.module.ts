@@ -18,6 +18,7 @@ import { NewTokenComponent } from './new-token/new-token.component';
 import { UpdateUserComponent } from './update-user/update-user.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { Placement as PopperPlacement, Options } from '@popperjs/core';
+import { ConfirmationModalComponent } from './confirmation-modal/confirmation-modal.component';
 
 
 @NgModule({
@@ -33,6 +34,7 @@ import { Placement as PopperPlacement, Options } from '@popperjs/core';
     PatientViewComponent,
     NewTokenComponent,
     UpdateUserComponent,
+    ConfirmationModalComponent,
   ],
   imports: [
     BrowserModule,

@@ -20,21 +20,16 @@ export class ManagerComponent implements OnInit {
   patients!: Patient[];
   tokens!: Token[];
   ownUser = true;
-  // @ViewChild(TokenComponent) tokens!: TokenComponent
-
   today = new Date();
   changedDate = '';
   pipe = new DatePipe('en-US');
   
-  // today = formatDate(new Date(), 'yyyy/MM/dd', 'en');
-
   constructor(
     private http: HttpClient,
     private modalService: NgbModal
     ) { }
 
   ngOnInit(): void {
-    
   }
 
   getUsers() : void{
@@ -67,10 +62,4 @@ export class ManagerComponent implements OnInit {
     const modalRef = this.modalService.open(UpdateUserComponent);
     modalRef.componentInstance.ownUser = true
   }
-
-  
-
-
-
-
 }

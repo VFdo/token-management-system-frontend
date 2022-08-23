@@ -13,7 +13,7 @@ export class LoginComponent implements OnInit {
   form!: FormGroup;
   mystring!: string;
   myUser!: User;
-  // @Output() sendUser = new EventEmitter<User>();
+  error = false;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -26,8 +26,6 @@ export class LoginComponent implements OnInit {
       password: ''
     })
   }
-
-
 
   submit(): void{
     this.http.post('http://localhost:8080/signin', this.form.getRawValue(), {withCredentials: true})
@@ -42,6 +40,10 @@ export class LoginComponent implements OnInit {
       sessionStorage.setItem('loggedIn', 'true')
       console.log('done')
       window.location.href='http://localhost:4200/'
-    },(err: HttpErrorResponse)=> alert('Invalid credentials, please try again!'));
+    },(err: HttpErrorResponse)=> this.error = true);
+  }
+
+  close(): void{
+    this.error = false;
   }
 }

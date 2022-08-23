@@ -26,7 +26,6 @@ export class NewTokenComponent implements OnInit {
   }
 
   submit(): void{
-    // console.log(this.form.getRawValue())
     this.http.post('http://localhost:8080/tokens/new', this.form.getRawValue())
     .subscribe(
       (res : any) => 

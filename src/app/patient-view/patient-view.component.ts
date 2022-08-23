@@ -7,6 +7,7 @@ import { Token } from '../tokenClass/token';
 import { UpdateUserComponent } from '../update-user/update-user.component';
 import {NgbActiveModal, NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import { TokenComponent } from '../token/token.component';
+import { ConfirmationModalComponent } from '../confirmation-modal/confirmation-modal.component';
 
 
 @Component({
@@ -24,6 +25,7 @@ export class PatientViewComponent implements OnInit {
   form!: FormGroup
   modalView = false;
   ownUser = true;
+  confirmation = false;
 
   constructor(
     public router: Router,
@@ -33,7 +35,6 @@ export class PatientViewComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    
   }
 
   getEditView(id: any){
@@ -47,12 +48,8 @@ export class PatientViewComponent implements OnInit {
   getTokensView(id : any){
     sessionStorage.setItem('findUser', id)
     this.showEditView = false;
-    // this.showTokenView = true;
-    this.form = this.formBuilder.group({
-      patientid: sessionStorage.getItem('findUser')
-    });
-    let url = 'http://localhost:8080/patient/tokens/all'
-    this.http.post(url, this.form.getRawValue()).subscribe((res : any)=>{
+    let url = 'http://localhost:8080/tokens/all/' + sessionStorage.getItem('findUser')
+    this.http.get(url).subscribe((res : any)=>{
       this.tokens = res;
       const modalRef = this.modalService.open(TokenComponent, { size: 'xl' });
       modalRef.componentInstance.tokens = this.tokens;
@@ -61,19 +58,17 @@ export class PatientViewComponent implements OnInit {
     (err: HttpErrorResponse)=> alert(err.message))
   }
     
-
   deletePatient(id : any){
+    this.confirmation = true;
     sessionStorage.setItem('deleteId', id)
-    this.form = this.formBuilder.group({
-      id: sessionStorage.getItem('deleteId')
-    });
-    let url = 'http://localhost:8080/user/delete'
-    this.http.post(url, this.form.getRawValue())
-    .subscribe((res : any)=> console.log(JSON.parse(res)),
-    (err: HttpErrorResponse)=> alert(err.message))
-    console.log(this.form.getRawValue())
-    window.location.reload();
+    const modalRef = this.modalService.open(ConfirmationModalComponent);
+    if(modalRef.componentInstance.pressedOk){
+      console.log('pressed')
+      this.confirmed()
+    }
   }
 
-
+  confirmed(): void{
+      
+    }
 }

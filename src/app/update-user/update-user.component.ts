@@ -58,5 +58,4 @@ export class UpdateUserComponent implements OnInit {
   updateId(userId : any) : void{
     this.form.controls['id'].setValue(userId);
   }
-
 }

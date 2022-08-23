@@ -21,19 +21,19 @@ export class HomeComponent implements OnInit {
 ) { }
 
   ngOnInit(): void {
-    // move to login page with routes
+    // If manager -> manager view
     if( this.role == 'ROLE_MANAGER'){
       this.message= 'Welcome Manager, ' + sessionStorage.getItem('username')
       this.hideManagerView = false;
       this.loggedIn=true;
-      // this.http.get('/http://localhost:8080/manager/home').subscribe((res:any) => console.log(res))
     }
+    // If patient -> patient view
     else if(this.role == 'ROLE_PATIENT'){
       this.message= 'Welcome Patient, ' + sessionStorage.getItem('username')
       this.hidePatientView = false;
       this.loggedIn=true;
-      // this.http.get('/http://localhost:8080/manager/home').subscribe((res:any) => console.log(res))
     }
+    // else -> not logged in
     else{
       this.hideLoginButton = false;
     }
@@ -42,5 +42,4 @@ export class HomeComponent implements OnInit {
   login() : void{
     this.router.navigate(['/login'])
   }
-
 }

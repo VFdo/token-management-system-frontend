@@ -1,5 +1,8 @@
 <div class="container d-flex justify-content-center">
 <form [formGroup]="form" (submit)="submit()">
+  <p>
+    <ngb-alert *ngIf="error" [dismissible]="true" [type]="'danger'" (closed)="close()">Invalid Credentials!</ngb-alert>
+  </p>
     <h1 class="h3 mb-3 fw-normal text-center">Sign In</h1>
 
     <div class="form-group p-2">

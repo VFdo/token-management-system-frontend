@@ -26,6 +26,6 @@
     </table>
 </div>
 
-<app-update-user *ngIf="showEditView"></app-update-user>
+<app-update-user *ngIf="showEditView" [ownUser]="ownUser"></app-update-user>
 <app-token *ngIf="showTokenView" [tokens]="tokens" [modalView]="modalView"></app-token>
 

@@ -32,5 +32,4 @@ export class NavigationComponent implements OnInit {
     sessionStorage.clear();
     window.location.href='http://localhost:4200/login'
   }
-
 }

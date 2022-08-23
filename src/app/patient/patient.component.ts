@@ -18,27 +18,22 @@ export class PatientComponent implements OnInit {
   showTokenView = false;
   showEditView = false;
   @ViewChild(UpdateUserComponent) updateUser!: UpdateUserComponent
-  form!: FormGroup
   ownUser = true;
 
   constructor(
     private http: HttpClient,
     public router: Router,
-    public formBuilder: FormBuilder,
     private modalService: NgbModal
   ) { }
 
   ngOnInit(): void {
-    this.form = this.formBuilder.group({
-      patientid: sessionStorage.getItem('userId')
-    })
   }
 
   getAllTokens() : void{
     this.showTokenView = true;
     this.showEditView = false;
-    let url = 'http://localhost:8080/patient/tokens/all'
-    this.http.post(url, this.form.getRawValue()).subscribe((res : any)=>this.tokens = res),
+    let url = 'http://localhost:8080/tokens/all/' + sessionStorage.getItem('userId')
+    this.http.get(url).subscribe((res : any)=>{this.tokens = res}),
     (err: HttpErrorResponse)=> alert(err.message);
     console.log(sessionStorage.getItem('userId'))
   }
@@ -49,9 +44,5 @@ export class PatientComponent implements OnInit {
     const modalRef = this.modalService.open(UpdateUserComponent);
     modalRef.componentInstance.ownUser = true;
   }
-
-
-
-
 }
 

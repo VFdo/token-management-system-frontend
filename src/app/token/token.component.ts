@@ -34,7 +34,6 @@ export class TokenComponent implements OnInit {
     else{
         this.userManager = false;
     }
-    
   }
 
   deactivateTokens() : void {
@@ -45,16 +44,6 @@ export class TokenComponent implements OnInit {
     this.router.navigate(['manager']);
   }
 
-  // TODO: make edit?
-
-  // deleteToken(id : any){
-  //   sessionStorage.setItem('deleteId', id)
-  //   this.form = this.formBuilder.group({
-  //     id: sessionStorage.getItem('deleteId')
-  //   });
-  //   let url = 'http://localhost:8080/tokens/delete'
-  //   this.http.post(url, this.form.getRawValue())
-  // }
-
+  // TODO: change states?
 }
 
