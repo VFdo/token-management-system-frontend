@@ -1,0 +1,30 @@
+<div class="container d-flex justify-content-center m-3">
+  <form [formGroup]="form" (submit)="submit()">
+    <h1 class="h3 mb-3 fw-normal text-center">Update Details</h1>
+    <div *ngIf="ownUser">
+      <p class="fw-light text-danger">*you will be logged out after updating the account</p>
+    </div>
+      <div class="form-group m-3">
+        <label class="m-1">Full name:</label>
+      <input formControlName="fullName" type="name" class="form-control" placeholder="Fullname" required autofocus>
+      </div>
+      <div *ngIf="ownUser" class="form-group m-3">
+        <label class="m-1">Password:</label>
+      <input formControlName="password" type="password" class="form-control" placeholder="Password" required>
+      </div>
+      <div class="form-group m-3">
+      <label class="m-1">Email:</label>
+      <input formControlName="email" type="email" class="form-control" placeholder="Email" required>
+      </div>
+      <div class="form-group m-3">
+      <label class="m-1">Phone no.:</label>
+      <input formControlName="phoneNo" type="phone" class="form-control" placeholder="Phone No" required>
+      </div>
+      <div class="form-group m-3">
+        <label class="m-1">Date of birth:</label>
+      <input formControlName="dateOfBirth" type="date" class="form-control" placeholder="Date" required>
+      </div>
+
+    <button class="w-100 btn btn-lg btn-primary" type="submit">Submit</button>
+  </form>
+</div>

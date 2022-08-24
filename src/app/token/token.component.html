@@ -1,0 +1,26 @@
+
+<div class="container text-center justify-content-center b-4">
+    <!-- TODO: make button pretty-->
+    <button *ngIf="userManager" (click)="deactivateTokens()" class="btn btn-danger m-4">Deactivate Today's Tokens</button> 
+    <table class="table align-middle mb-0 bg-white">
+        <thead class="bg-light">
+          <tr>
+            <th>Token Number</th>
+            <th>Date</th>
+            <th>Patient</th>
+            <th>State</th>
+            <!-- <th *ngIf="userManager">Actions</th> -->
+          </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let token of tokens">
+              <td>{{ token.tokenNumber }}</td>
+              <td>{{ token.date }}</td>
+              <td>{{ token.patient }}</td>
+              <td class=" p-1 m-2 badge rounded-pill bg"[ngClass]="{'bg-success' : (token.state)=='ACTIVE', 'bg-danger' : (token.state)=='DEACTIVATED'}">{{ token.state }}</td>
+            </tr>
+          </tbody>
+    </table>
+</div>
+
+

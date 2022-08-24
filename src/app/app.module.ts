@@ -10,6 +10,16 @@ import { NavigationComponent } from './navigation/navigation.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { Auth } from './auth/auth';
+import { ManagerComponent } from './manager/manager.component';
+import { PatientComponent } from './patient/patient.component';
+import { TokenComponent } from './token/token.component';
+import { PatientViewComponent } from './patient-view/patient-view.component';
+import { NewTokenComponent } from './new-token/new-token.component';
+import { UpdateUserComponent } from './update-user/update-user.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { Placement as PopperPlacement, Options } from '@popperjs/core';
+import { ConfirmationModalComponent } from './confirmation-modal/confirmation-modal.component';
+
 
 @NgModule({
   declarations: [
@@ -17,14 +27,22 @@ import { Auth } from './auth/auth';
     RegisterComponent,
     LoginComponent,
     HomeComponent,
-    NavigationComponent
+    NavigationComponent,
+    ManagerComponent,
+    PatientComponent,
+    TokenComponent,
+    PatientViewComponent,
+    NewTokenComponent,
+    UpdateUserComponent,
+    ConfirmationModalComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    NgbModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: Auth, multi: true }
