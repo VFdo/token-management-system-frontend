@@ -1,0 +1,31 @@
+<div class="container text-center justify-content-center">
+  <button (click)="router.navigate(['/register'])" class="btn btn-warning m-4">Add new user</button>
+    <table class="table align-middle mb-0 bg-white">
+        <thead class="bg-light">
+          <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Tokens</th>
+            <th>Actions</th>
+            <th>Delete</th>
+          </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let patient of patients">
+              <td>{{ patient.fullName }}</td>
+              <td>{{ patient.email }}</td>
+              <td>{{ patient.phoneNo }}</td> 
+              <!-- <td><button (click)="(getTokensView(patient.id))" type="button" mdbripple="" ripplecolor="dark" class="btn btn-link btn-rounded btn-sm fw-bold" data-toggle="modal" data-target=".bd-example-modal-lg"> View Tokens </button></td> -->
+              <!-- <td><button (click)="(getEditView(patient.id))" type="button" mdbripple="" ripplecolor="dark" class="btn btn-link btn-rounded btn-sm fw-bold"> View Tokens </button></td> -->
+              <td><button (click)="(getTokensView(patient.id))" type="button" mdbripple="" ripplecolor="dark" class="btn btn-link btn-rounded btn-sm fw-bold"> View Tokens</button></td>
+              <td><button (click)="(getEditView(patient.id))" type="button" mdbripple="" ripplecolor="dark" class="btn btn-link btn-rounded btn-sm fw-bold"> Edit </button></td>
+              <td><button (click)="(deletePatient(patient.id))" type="button" mdbripple="" ripplecolor="dark" class="btn link-danger btn-rounded btn-sm fw-bold"> Delete </button></td>
+            </tr>
+          </tbody>
+    </table>
+</div>
+
+<app-update-user *ngIf="showEditView" [ownUser]="ownUser"></app-update-user>
+<app-token *ngIf="showTokenView" [tokens]="tokens" [modalView]="modalView"></app-token>
+

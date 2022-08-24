@@ -1,0 +1,34 @@
+<div class="row g-4 d-flex p-4 text-center justify-content-center">
+    <div class="col-sm-3 p-x-2">
+        <div class="card">
+            <div class="card-body">
+            <!-- <div class="icon-square"> -->
+            <h1 class="card-title">🔍</h1>
+            <p class="card-text">View all patients in the system</p>
+            <a (click)="getUsers()"class="btn btn-primary">Patients</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-3 p-x-2">
+        <div class="card">
+            <div class="card-body">
+            <h1 class="card-title">🎟</h1>
+            <p class="card-text">View all tokens created by patients</p>
+            <a (click)="getTokens()" class="btn btn-primary">Tokens</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-3 p-x-2">
+        <div class="card">
+            <div class="card-body">
+            <h1 class="card-title">🧑‍💻</h1>
+            <p class="card-text">Update or edit profile info</p>
+            <a (click)="showEditView()" class="btn btn-primary">Update Profile</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<app-patient-view *ngIf="showPatientView" [patients]="patients"></app-patient-view>
+<app-token *ngIf="showTokenView" [tokens]="tokens"></app-token>
+<app-update-user *ngIf="showUpdateView"></app-update-user>

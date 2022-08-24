@@ -6,7 +6,7 @@ export class Auth implements HttpInterceptor{
         if (sessionStorage.getItem('username') && sessionStorage.getItem('token')) {
             req = req.clone({
               setHeaders: {
-                Authorization: sessionStorage.getItem('token')?? 'unauthorixzed'
+                Authorization: sessionStorage.getItem('token')?? 'unauthorized'
               }
             })
           }
